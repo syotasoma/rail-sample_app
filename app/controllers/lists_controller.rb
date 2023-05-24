@@ -5,9 +5,13 @@ class ListsController < ApplicationController
   
   def create
     @list = List.new(list_params)
-    @list.save
+  if @list.save
     redirect_to list_path(@list.id)
+  else
+    @lists = List.all
+    render :index
   end 
+end 
   
   def index
   @lists = List.all
